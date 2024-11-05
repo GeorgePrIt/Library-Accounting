@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать пользователя</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/people}" th:object="${person}">
+    <label for="name">Введите ФИО: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+<!--    Получаем доступ к полям объекта Person-->
+<!--    Выводим ошибку в случае неправилльного ввода-->
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+
+    <br/>
+
+    <label for="yearOfBirthday">Введите год рождения: </label>
+    <input type="text" th:field="*{yearOfBirthday}" id="yearOfBirthday"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yearOfBirthday')}" th:errors="*{yearOfBirthday}">Age error</div>
+
+    <br/>
+
+    <input type="submit" value="Создать!"/>
+</form>
+
+</body>
+</html>
